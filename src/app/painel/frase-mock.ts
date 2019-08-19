@@ -6,15 +6,15 @@ export const Frases: FraseModel[] = [
     frasePT: "Eu gosto de aprender"
   },
   {
-    fraseENG: "I like to learn",
-    frasePT: "Eu gosto de aprender"
+    fraseENG: "I watch tv",
+    frasePT: "Eu assisto tv"
   },
   {
-    fraseENG: "I like to learn",
-    frasePT: "Eu gosto de aprender"
+    fraseENG: "testing angular",
+    frasePT: "testando o angular"
   },
   {
-    fraseENG: "I like to learn",
-    frasePT: "Eu gosto de aprender"
+    fraseENG: "Bread",
+    frasePT: "Pão"
   }
 ];

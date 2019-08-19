@@ -1,18 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Coracao } from '../shared/coracao.model'
 
 @Component({
   selector: 'app-tentativas',
   templateUrl: './tentativas.component.html',
   styleUrls: ['./tentativas.component.css']
 })
-export class TentativasComponent implements OnInit {
-
+export class TentativasComponent implements OnInit, OnChanges {
+  @Input() tentativas;
   public coracaoCheio: string = "../../assets/coracao_cheio.png";
   public coracaoVazio: string = "../../assets/coracao_vazio.png";
 
-  constructor() { }
+  coracoes: Coracao[] = [
+    new Coracao(true), new Coracao(true), new Coracao(true)
+  ]
 
-  ngOnInit() {
+  constructor() { console.log(this.coracoes);
   }
 
+  ngOnInit() {    
+  }
+
+  ngOnChanges(){
+    console.log(this.tentativas)
+    if(this.tentativas !== this.coracoes.length){
+      let indice = this.coracoes.length - this.tentativas;
+      this.coracoes[indice - 1].cheio = false;
+    }
+  }
+
+  tesses(){
+    this.tentativas = 0;
+    console.log('vc perdeu')
+  }
 }
