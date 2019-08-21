@@ -8,29 +8,27 @@ import { Coracao } from '../shared/coracao.model'
 })
 export class TentativasComponent implements OnInit, OnChanges {
   @Input() tentativas;
-  public coracaoCheio: string = "../../assets/coracao_cheio.png";
-  public coracaoVazio: string = "../../assets/coracao_vazio.png";
+  public coracaoCheio: string = '../../assets/coracao_cheio.png';
+  public coracaoVazio: string = '../../assets/coracao_vazio.png';
 
   coracoes: Coracao[] = [
     new Coracao(true), new Coracao(true), new Coracao(true)
   ]
 
-  constructor() { console.log(this.coracoes);
+  constructor() {
+    console.log(this.coracoes);
   }
 
-  ngOnInit() {    
+  ngOnInit() {
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
+    try {
     console.log(this.tentativas)
-    if(this.tentativas !== this.coracoes.length){
-      let indice = this.coracoes.length - this.tentativas;
+    if (this.tentativas !== this.coracoes.length) {
+      const indice = this.coracoes.length - this.tentativas;
       this.coracoes[indice - 1].cheio = false;
     }
-  }
-
-  tesses(){
-    this.tentativas = 0;
-    console.log('vc perdeu')
-  }
+  } catch (error) { }
+}
 }

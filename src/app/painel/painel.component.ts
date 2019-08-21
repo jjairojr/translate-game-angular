@@ -9,7 +9,7 @@ import { FraseModel } from "./../shared/frase.model";
   styleUrls: ["./painel.component.css"]
 })
 export class PainelComponent implements OnInit {
-  jogando: boolean;
+  jogando: boolean = true;
   tentativas = 3;
   frases: FraseModel[] = Frases;
   rodada: number = 0;
@@ -20,37 +20,57 @@ export class PainelComponent implements OnInit {
   }
 
   instrucao: string = 'Traduz ae';
-  resposta: string = "";
+  resposta: string = '';
+
   ngOnInit() {
   }
-  
-  teste(event) {
+
+  capturaValorInput(event) {
     this.resposta = event.target.value;
   }
 
   verificaResposta(): void {
-    if(this.resposta === this.fraseRodada.frasePT){
+    if (this.resposta === this.fraseRodada.frasePT) {
       this.jogando = true;
       this.rodada++;
       this.fraseRodada = this.frases[this.rodada];
       this.progresso = this.progresso + (100 / this.frases.length);
-      this.resposta = "";
-      if(this.rodada > 3){
-        this.rodada = 3
-        this.fraseRodada = this.frases[this.rodada]
+      this.resposta = '';
+      console.log(this.frases.length);
+      console.log(this.progresso);
+      console.log(this.jogando);
+
+      if (this.rodada > this.frases.length - 1 ) {
+        this.limiteRodadas();
       }
-      
     } else {
       this.tentativas--;
-      if(this.tentativas === 0){
-        this.jogando = false;
-        alert('Perdeu Menor');
-      }
+      this.perdeuJogo();
     }
+    this.ganhouJogo();
   }
 
-  atualizaRodada(){
+  atualizaRodada() {
     this.fraseRodada = this.frases[this.rodada];
   }
 
+  limiteRodadas() {
+    this.rodada = this.frases.length - 1  ;
+    this.fraseRodada = this.frases[this.rodada];
+  }
+
+  ganhouJogo() {
+    if (this.progresso === 100) {
+      this.jogando = false;
+      console.log(this.jogando);
+      alert('ganhou');
+    }
+  }
+
+  perdeuJogo() {
+    if (this.tentativas === 0) {
+      this.jogando = false;
+      alert('perdeu');
+    }
+  }
 }

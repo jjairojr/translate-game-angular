@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron" *ngIf="jogando">
     <div class="row">
       <div class="col-sm-6">
         <app-progresso [progresso]="progresso"></app-progresso>
@@ -17,7 +17,7 @@
         <h4>{{instrucao}}</h4>
         <p>{{fraseRodada.fraseENG}}</p>
           <div class="form-group">
-            <textarea class="form-control" rows="3" (input)=teste($event) [value]="resposta"></textarea>
+            <textarea class="form-control" rows="3" (input)=capturaValorInput($event) [value]="resposta"></textarea>
           </div>
       </div>
     </div>
@@ -30,4 +30,5 @@
       </div>
     </div>
   </div>
+  <div *ngIf="!jogando"><h1>Parabens</h1></div>
 </div>
